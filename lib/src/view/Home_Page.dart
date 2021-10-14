@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
 import 'package:moviestest/src/controller/Home_Controller.dart';
+import 'package:get/get.dart';
 
 class HomePage extends GetView<HomeController> {
-  final controller = Get.put(HomeController());
-
   @override
   Widget build(BuildContext context) {
     MediaQueryData screen = MediaQuery.of(context);
     Size screenSize = screen.size;
+
     return Scaffold(
       body: Container(
         width: screenSize.width,
@@ -38,7 +38,7 @@ class HomePage extends GetView<HomeController> {
                         color: Colors.grey[800],
                       ),
                       Container(
-                        width: screenSize.width * 0.8,
+                        width: screenSize.width * 0.7,
                         child: TextFormField(
                           decoration: const InputDecoration(
                               hintText: 'Procurar Filmes'),
@@ -46,7 +46,7 @@ class HomePage extends GetView<HomeController> {
                           onSaved: (String? value) {},
                           validator: (String? value) {
                             return (value != null && value.length == 0)
-                                ? 'The word is very short'
+                                ? 'A palavra e muito Curta'
                                 : null;
                           },
                         ),
@@ -61,47 +61,60 @@ class HomePage extends GetView<HomeController> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: screenSize.width * 0.05, top: screenSize.height * 0.02),
-              child: Container(
-                height: screenSize.height * 0.05,
-                width: screenSize.width * 0.27,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.grey[700],
-                    border: Border.all(color: Colors.grey, width: 3)),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: GestureDetector(
-                      child: Text(
-                        'Alugar',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8, bottom: 8),
-                      child: Container(
-                        width: screenSize.width * 0.005,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Expanded(
-                        child: GestureDetector(
-                      child: Text(
-                        'Comprar',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ))
-                  ],
-                ),
+            Container(
+              width: screenSize.width,
+              height: screenSize.height * 0.8,
+              child: Row(
+                children: [
+                  Column(
+                    children: [
+                      GetX<HomeController>(initState: (state) {
+                        Get.find<HomeController>().getAllCategories();
+                      }, builder: (_) {
+                        return _.genreList.length < 1
+                            ? Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : Container(
+                                width: screenSize.width,
+                                height: screenSize.height * 0.05,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                        child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: screenSize.width * 0.05,
+                                                top: screenSize.height * 0.02),
+                                            child: GestureDetector(
+                                              child: Container(
+                                                height:
+                                                    screenSize.height * 0.05,
+                                                width: screenSize.width * 0.27,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                    color: Colors.grey[700],
+                                                    border: Border.all(
+                                                        color: Colors.grey,
+                                                        width: 3)),
+                                                child: Center(
+                                                    child: Text(
+                                                  _.genreList[index].name,
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                )),
+                                              ),
+                                            )));
+                                  },
+                                  itemCount: _.genreList.length,
+                                ),
+                              );
+                      }),
+                    ],
+                  ),
+                ],
               ),
             )
           ],
