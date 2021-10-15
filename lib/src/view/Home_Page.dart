@@ -14,7 +14,7 @@ class HomePage extends GetView<HomeController> {
       body: Container(
         width: screenSize.width,
         height: screenSize.height,
-        color: Colors.grey[700],
+        color: Color.fromRGBO(27, 27, 27, 1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,7 +26,7 @@ class HomePage extends GetView<HomeController> {
                   width: screenSize.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey[400],
+                    color: Colors.grey[800],
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -35,7 +35,7 @@ class HomePage extends GetView<HomeController> {
                       IconButton(
                         onPressed: () => null,
                         icon: Icon(Icons.menu),
-                        color: Colors.grey[800],
+                        color: Colors.grey[400],
                       ),
                       Container(
                         width: screenSize.width * 0.7,
@@ -63,7 +63,7 @@ class HomePage extends GetView<HomeController> {
             ),
             Container(
               width: screenSize.width,
-              height: screenSize.height * 0.8,
+              height: screenSize.height * 0.07,
               child: Row(
                 children: [
                   Column(
@@ -95,7 +95,8 @@ class HomePage extends GetView<HomeController> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             50),
-                                                    color: Colors.grey[700],
+                                                    color: Color.fromRGBO(
+                                                        27, 27, 27, 1),
                                                     border: Border.all(
                                                         color: Colors.grey,
                                                         width: 3)),
@@ -116,6 +117,11 @@ class HomePage extends GetView<HomeController> {
                   ),
                 ],
               ),
+            ),
+            Container(
+              height: screenSize.height * 0.4,
+              width: screenSize.width,
+              color: Colors.white,
             )
           ],
         ),

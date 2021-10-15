@@ -4,6 +4,7 @@ import 'package:moviestest/src/Repository/Repository.dart';
 import 'package:moviestest/src/model/Genres_Model.dart';
 
 import 'package:get/get.dart';
+import 'package:moviestest/src/model/Movies_Model.dart';
 
 class HomeController extends GetxController {
   final Repository repository;
@@ -12,9 +13,18 @@ class HomeController extends GetxController {
   var _genresList = <GenresModel>[].obs;
   set genreList(value) => this._genresList.value = value;
   get genreList => this._genresList.value;
-
   getAllCategories() {
     repository.getCategories().then((data) {
+      this.genreList = data;
+    });
+  }
+
+  var _moviesList = <MoviesList>[].obs;
+  set moviesList(value) => this._moviesList.value = value;
+  get moviesList => this._moviesList.value;
+
+  getMoviesWithCategories(int id) {
+    repository.getMoviesByCategorie(id).then((data) {
       this.genreList = data;
     });
   }
