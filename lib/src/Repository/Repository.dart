@@ -9,11 +9,7 @@ class Repository {
     return apiClient.getCategories();
   }
 
-  getMovieDetails(movieId) {
-    return apiClient.getMovieDetails(movieId);
-  }
-
-  getMoviesByCategorie(categoryID) {
-    return apiClient.getMoviesByCategorie(categoryID)();
+  getMoviesByCategories(categoryID) {
+    return apiClient.getMoviesByCategories(categoryID);
   }
 }

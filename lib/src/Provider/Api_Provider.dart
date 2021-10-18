@@ -17,6 +17,7 @@ class Api extends GetConnect {
       Iterable jsonResponse = data['genres'];
       List<GenresModel> listGenresModel =
           jsonResponse.map((model) => GenresModel.fromJson(model)).toList();
+      print(jsonResponse);
       return listGenresModel;
     }
   }
@@ -27,20 +28,10 @@ class Api extends GetConnect {
     if (result.statusCode == 200) {
       var data = json.decode(result.body);
       Iterable jsonResponse = data['results'];
+      print(jsonResponse);
       List<MoviesList> listMoviesModel =
           jsonResponse.map((model) => MoviesList.fromJson(model)).toList();
       return listMoviesModel;
     }
   }
-
-  getMovieDetails(int movieId) async {
-    http.Response result = await http.get(Uri.parse(
-        'https://api.themoviedb.org/3/movie/${movieId}?api_key=${MoviesKeys.apiKey}&language=pt-BR'));
-    if (result.statusCode == 200) {
-      var data = json.decode(result.body);
-      Iterable jsonResponse = data['results'];
-      List<MoviesList> listMoviesModel =
-          jsonResponse.map((model) => MoviesList.fromJson(model)).toList();
-      return listMoviesModel;
-    }
 }
