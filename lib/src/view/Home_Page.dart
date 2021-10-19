@@ -126,32 +126,61 @@ class HomePage extends GetView<HomeController> {
                 ),
               ),
               Container(
-                  height: screenSize.height * 0.7,
+                  height: screenSize.height * 0.8,
                   width: screenSize.width,
-                  color: Colors.white,
-                  child: Column(
-                    children: [
-                      Obx(
-                        () => Flexible(
-                          child: ListView.builder(
-                            itemCount: controller.moviesList.length,
-                            itemBuilder: (_, index) =>
-                                controller.moviesList.length == 0
-                                    ? Center(
-                                        child: CircularProgressIndicator(),
-                                      )
-                                    : Container(
-                                        width: 70,
-                                        height: 80,
-                                        color: Colors.blue,
-                                        child: Text(controller
-                                            .moviesList[index].title
-                                            .toString()),
+                  child: Obx(
+                    () => Container(
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3, mainAxisExtent: 200),
+                        itemCount: controller.moviesList.length,
+                        itemBuilder: (_, index) => controller
+                                    .moviesList.length ==
+                                0
+                            ? Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : Container(
+                                width: 100,
+                                height: 180,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      color: Colors.blue,
+                                      height: 150,
+                                      width: 100,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    'https://image.tmdb.org/t/p/w1280/${controller.moviesList[index].backdropPath}'),
+                                                fit: BoxFit.cover)),
                                       ),
-                          ),
-                        ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 5, bottom: 5),
+                                      child: Container(
+                                        height: 30,
+                                        width: 100,
+                                        color: Color.fromRGBO(27, 27, 27, 1),
+                                        child: Center(
+                                          child: Text(
+                                            controller.moviesList[index].title
+                                                .toString(),
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                       ),
-                    ],
+                    ),
                   )),
             ])));
   }
