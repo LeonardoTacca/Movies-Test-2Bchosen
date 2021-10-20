@@ -22,9 +22,9 @@ class Api extends GetConnect {
     }
   }
 
-  getMoviesByCategories(int categoryID) async {
+  getMoviesByCategories(int categoryID, int pageNumber) async {
     http.Response result = await http.get(Uri.parse(
-        'https://api.themoviedb.org/3/discover/movie?api_key=${MoviesKeys.apiKey}&with_genres=$categoryID&language=pt-BR&page=1'));
+        'https://api.themoviedb.org/3/discover/movie?api_key=${MoviesKeys.apiKey}&with_genres=$categoryID&language=pt-BR&page=$pageNumber'));
     if (result.statusCode == 200) {
       var data = json.decode(result.body);
       Iterable jsonResponse = data['results'];

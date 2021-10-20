@@ -11,6 +11,6 @@ void main() {
   });
   test('Verificar se o retorno da api getMoviesByCategorie', () async {
     int movieId = 27;
-    await Api(httpInstance: http.Client()).getMoviesByCategories(movieId);
+    await Api(httpInstance: http.Client()).getMoviesByCategories(movieId, 1);
   });
 }

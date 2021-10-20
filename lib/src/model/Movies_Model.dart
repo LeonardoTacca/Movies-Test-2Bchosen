@@ -25,8 +25,7 @@ class MoviesList {
 
   MoviesList.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
-    backdropPath = json['backdrop_path'];
-
+    backdropPath = json['backdrop_path'] ?? 'wwemzKWzjKYJFfCeiB57q3r4Bcm.png';
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];

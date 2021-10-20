@@ -72,51 +72,49 @@ class HomePage extends GetView<HomeController> {
                               ? Center(
                                   child: CircularProgressIndicator(),
                                 )
-                              : Container(
-                                  width: screenSize.width,
-                                  height: screenSize.height * 0.05,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                          child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: screenSize.width * 0.05,
-                                                  top:
-                                                      screenSize.height * 0.02),
-                                              child: Obx(
-                                                () => GestureDetector(
-                                                  onTap: () => {
-                                                    controller
-                                                        .getMoviesByCategories(_
-                                                            .genreList[index]
-                                                            .id)
-                                                  },
-                                                  child: Container(
-                                                    height: screenSize.height *
-                                                        0.05,
-                                                    width:
-                                                        screenSize.width * 0.27,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                        color: Color.fromRGBO(
-                                                            27, 27, 27, 1),
-                                                        border: Border.all(
-                                                            color: Colors.grey,
-                                                            width: 3)),
-                                                    child: Center(
-                                                        child: Text(
-                                                      _.genreList[index].name,
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    )),
-                                                  ),
-                                                ),
-                                              )));
-                                    },
-                                    itemCount: _.genreList.length,
+                              : Obx(
+                                  () => Container(
+                                    width: screenSize.width,
+                                    height: screenSize.height * 0.05,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: screenSize.width * 0.05,
+                                              top: screenSize.height * 0.02),
+                                          child: GestureDetector(
+                                            onTap: () => {
+                                              controller.movieId.value =
+                                                  _.genreList[index].id,
+                                              controller.getMoviesByCategories(
+                                                  _.genreList[index].id,
+                                                  controller.pageNumber.value)
+                                            },
+                                            child: Container(
+                                              height: screenSize.height * 0.05,
+                                              width: screenSize.width * 0.27,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  color: Color.fromRGBO(
+                                                      27, 27, 27, 1),
+                                                  border: Border.all(
+                                                      color: Colors.grey,
+                                                      width: 3)),
+                                              child: Center(
+                                                  child: Text(
+                                                _.genreList[index].name,
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              )),
+                                            ),
+                                          ),
+                                        ));
+                                      },
+                                      itemCount: _.genreList.length,
+                                    ),
                                   ),
                                 );
                         }),
@@ -131,6 +129,7 @@ class HomePage extends GetView<HomeController> {
                   child: Obx(
                     () => Container(
                       child: GridView.builder(
+                        controller: controller.scrollController,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3, mainAxisExtent: 200),
@@ -154,7 +153,7 @@ class HomePage extends GetView<HomeController> {
                                         decoration: BoxDecoration(
                                             image: DecorationImage(
                                                 image: NetworkImage(
-                                                    'https://image.tmdb.org/t/p/w1280/${controller.moviesList[index].backdropPath}'),
+                                                    'https://image.tmdb.org/t/p/w500/${controller.moviesList[index].backdropPath}'),
                                                 fit: BoxFit.cover)),
                                       ),
                                     ),
