@@ -140,42 +140,46 @@ class HomePage extends GetView<HomeController> {
                             ? Center(
                                 child: CircularProgressIndicator(),
                               )
-                            : Container(
-                                width: 100,
-                                height: 180,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      color: Colors.blue,
-                                      height: 150,
-                                      width: 100,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    'https://image.tmdb.org/t/p/w500/${controller.moviesList[index].backdropPath}'),
-                                                fit: BoxFit.cover)),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 5, bottom: 5),
-                                      child: Container(
-                                        height: 30,
+                            : GestureDetector(
+                                onTap: () =>
+                                    {print(controller.moviesList[index].id)},
+                                child: Container(
+                                  width: 100,
+                                  height: 180,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        color: Colors.blue,
+                                        height: 150,
                                         width: 100,
-                                        color: Color.fromRGBO(27, 27, 27, 1),
-                                        child: Center(
-                                          child: Text(
-                                            controller.moviesList[index].title
-                                                .toString(),
-                                            style: TextStyle(
-                                              color: Colors.white,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      'https://image.tmdb.org/t/p/w500/${controller.moviesList[index].backdropPath}'),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 5, bottom: 5),
+                                        child: Container(
+                                          height: 30,
+                                          width: 100,
+                                          color: Color.fromRGBO(27, 27, 27, 1),
+                                          child: Center(
+                                            child: Text(
+                                              controller.moviesList[index].title
+                                                  .toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                       ),

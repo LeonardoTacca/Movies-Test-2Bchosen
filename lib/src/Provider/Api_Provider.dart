@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:moviestest/src/model/Genres_Model.dart';
 import 'package:moviestest/src/model/Key_Model.dart';
+import 'package:moviestest/src/model/MovieDetails.dart';
 import 'package:moviestest/src/model/Movies_Model.dart';
+
+import '../../src/model/MovieDetails.dart';
 
 class Api extends GetConnect {
   late final http.Client httpInstance;
@@ -17,7 +20,7 @@ class Api extends GetConnect {
       Iterable jsonResponse = data['genres'];
       List<GenresModel> listGenresModel =
           jsonResponse.map((model) => GenresModel.fromJson(model)).toList();
-      print(jsonResponse);
+
       return listGenresModel;
     }
   }
@@ -28,10 +31,21 @@ class Api extends GetConnect {
     if (result.statusCode == 200) {
       var data = json.decode(result.body);
       Iterable jsonResponse = data['results'];
-      print(jsonResponse);
+
       List<MoviesList> listMoviesModel =
           jsonResponse.map((model) => MoviesList.fromJson(model)).toList();
       return listMoviesModel;
+    }
+  }
+
+  getMovieDetails(int movieId) async {
+    http.Response result = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$movieId?api_key=${MoviesKeys.apiKey}&language=pt-BR'));
+    if (result.statusCode == 200) {
+      Iterable jsonResponse = json.decode(result.body);
+      List<MovieDetails> listMovieDetails =
+          jsonResponse.map((model) => MovieDetails.fromJson(model)).toList();
+      return listMovieDetails;
     }
   }
 }
