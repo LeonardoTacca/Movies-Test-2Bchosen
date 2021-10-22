@@ -141,8 +141,11 @@ class HomePage extends GetView<HomeController> {
                                 child: CircularProgressIndicator(),
                               )
                             : GestureDetector(
-                                onTap: () =>
-                                    {print(controller.moviesList[index].id)},
+                                onTap: () => {
+                                  Get.toNamed('/MovieDetails', arguments: [
+                                    controller.moviesList[index].id.toString()
+                                  ])
+                                },
                                 child: Container(
                                   width: 100,
                                   height: 180,

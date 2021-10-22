@@ -42,10 +42,8 @@ class Api extends GetConnect {
     http.Response result = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/$movieId?api_key=${MoviesKeys.apiKey}&language=pt-BR'));
     if (result.statusCode == 200) {
-      Iterable jsonResponse = json.decode(result.body);
-      List<MovieDetails> listMovieDetails =
-          jsonResponse.map((model) => MovieDetails.fromJson(model)).toList();
-      return listMovieDetails;
+      var data = MovieDetails.fromJson(json.decode(result.body));
+      return data;
     }
   }
 }

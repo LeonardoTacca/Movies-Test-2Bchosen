@@ -5,7 +5,7 @@ class MoviesList {
   late String originalLanguage;
   late String originalTitle;
   late String overview;
-  late double popularity;
+  late var popularity;
   late String posterPath;
   late String releaseDate;
   late String title;

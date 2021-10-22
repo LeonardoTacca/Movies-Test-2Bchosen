@@ -12,4 +12,8 @@ class Repository {
   getMoviesByCategories(categoryID, pageNumber) {
     return apiClient.getMoviesByCategories(categoryID, pageNumber);
   }
+
+  getMovieDetail(movieId) {
+    return apiClient.getMovieDetails(movieId);
+  }
 }
