@@ -20,4 +20,8 @@ class Repository {
   getSimilarMovies(movieId) {
     return apiClient.getSimilarMovies(movieId);
   }
+
+  getPopularMovies() {
+    return apiClient.getPopularMovies();
+  }
 }

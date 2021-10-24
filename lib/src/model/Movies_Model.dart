@@ -9,19 +9,20 @@ class MoviesList {
   late String posterPath;
   late String releaseDate;
   late String title;
+  late var voteAverage;
 
-  MoviesList({
-    required this.adult,
-    required this.backdropPath,
-    required this.id,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.releaseDate,
-    required this.title,
-  });
+  MoviesList(
+      {required this.adult,
+      required this.backdropPath,
+      required this.id,
+      required this.originalLanguage,
+      required this.originalTitle,
+      required this.overview,
+      required this.popularity,
+      required this.posterPath,
+      required this.releaseDate,
+      required this.title,
+      required this.voteAverage});
 
   MoviesList.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
@@ -34,13 +35,14 @@ class MoviesList {
     posterPath = json['poster_path'];
     releaseDate = json['release_date'];
     title = json['title'];
+    voteAverage = json['vote_average'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['adult'] = this.adult;
     data['backdrop_path'] = this.backdropPath;
-
+    data['vote_average'] = this.voteAverage;
     data['id'] = this.id;
     data['original_language'] = this.originalLanguage;
     data['original_title'] = this.originalTitle;

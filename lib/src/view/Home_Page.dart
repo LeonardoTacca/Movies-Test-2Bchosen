@@ -152,6 +152,12 @@ class HomePage extends GetView<HomeController> {
                                         .toString(),
                                     controller.moviesList[index].backdropPath
                                         .toString(),
+                                    controller.moviesList[index].voteAverage
+                                        .toString(),
+                                    controller.moviesList[index].popularity
+                                        .toString(),
+                                    controller.moviesList[index].releaseDate
+                                        .toString()
                                   ])
                                 },
                                 child: Container(

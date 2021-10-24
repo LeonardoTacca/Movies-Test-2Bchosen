@@ -8,11 +8,16 @@ class MoviesDetailController extends GetxController {
   MoviesDetailController({required this.repository})
       : assert(repository != null);
   var arg = [].obs;
+  RxString year = ''.obs;
   RxInt movieId = 0.obs;
+
   RxString movieTitle = ''.obs;
   RxString overview = ''.obs;
   RxString posterPath = ''.obs;
   RxString backdropPath = ''.obs;
+  RxDouble voteAverage = 0.0.obs;
+  RxString popularity = ''.obs;
+  RxString releaseDate = ''.obs;
   var _movieDetails;
   set movieDetails(value) => this._movieDetails = value;
   get movieDetails => this._movieDetails;
@@ -24,6 +29,10 @@ class MoviesDetailController extends GetxController {
     overview.value = arg[2];
     posterPath.value = arg[3];
     backdropPath.value = arg[4];
+    voteAverage.value = double.parse(arg[5]);
+    year.value = voteAverage.value.toStringAsFixed(4);
+    popularity.value = arg[6];
+    releaseDate.value = arg[7];
     super.onInit();
   }
 

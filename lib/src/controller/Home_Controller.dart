@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   RxInt movieId = 0.obs;
   RxInt pageNumber = 1.obs;
   ScrollController scrollController = ScrollController();
+  RxBool categorySelected = false.obs;
   var _genresList = <GenresModel>[].obs;
   set genreList(value) => this._genresList.value = value;
   get genreList => this._genresList.value;
@@ -19,11 +20,19 @@ class HomeController extends GetxController {
     });
   }
 
+  getPopularMovies() {
+    categorySelected.value = false;
+    repository.getPopularMovies().then((data) {
+      this.moviesList = data;
+    });
+  }
+
   var _moviesList = <MoviesList>[].obs;
   set moviesList(value) => this._moviesList.value = value;
   get moviesList => this._moviesList.value;
 
   getMoviesByCategories(int id, int pageNumber) async {
+    categorySelected.value = true;
     moviesList = <MoviesList>[];
     moviesList = await repository.getMoviesByCategories(id, pageNumber);
   }
@@ -32,29 +41,32 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     searchField.text = '';
-    scrollController
-      ..addListener(() async {
-        if (scrollController.offset >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange) {
-          moviesList = await repository.getMoviesByCategories(
-              movieId.value, ++pageNumber.value);
-          scrollController.animateTo(5,
-              duration: Duration(milliseconds: 1000), curve: Curves.ease);
-        }
+    getPopularMovies();
+    if (categorySelected.value == true) {
+      scrollController
+        ..addListener(() async {
+          if (scrollController.offset >=
+                  scrollController.position.maxScrollExtent &&
+              !scrollController.position.outOfRange) {
+            moviesList = await repository.getMoviesByCategories(
+                movieId.value, ++pageNumber.value);
+            scrollController.animateTo(5,
+                duration: Duration(milliseconds: 1000), curve: Curves.ease);
+          }
 
-        if (pageNumber.value >= 2 &&
-            scrollController.offset <=
-                scrollController.position.minScrollExtent &&
-            !scrollController.position.outOfRange) {
-          moviesList = await repository.getMoviesByCategories(
-              movieId.value, --pageNumber.value);
-          scrollController.animateTo(
-              scrollController.position.maxScrollExtent - 10,
-              duration: Duration(milliseconds: 1000),
-              curve: Curves.ease);
-        }
-      });
+          if (pageNumber.value >= 2 &&
+              scrollController.offset <=
+                  scrollController.position.minScrollExtent &&
+              !scrollController.position.outOfRange) {
+            moviesList = await repository.getMoviesByCategories(
+                movieId.value, --pageNumber.value);
+            scrollController.animateTo(
+                scrollController.position.maxScrollExtent - 10,
+                duration: Duration(milliseconds: 1000),
+                curve: Curves.ease);
+          }
+        });
+    }
     super.onInit();
   }
 

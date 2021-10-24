@@ -61,4 +61,16 @@ class Api extends GetConnect {
       return listSimilarMoviesModel;
     }
   }
+
+  getPopularMovies() async {
+    http.Response result = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/popular?api_key=${MoviesKeys.apiKey}&language=pt-BR&page=1'));
+    if (result.statusCode == 200) {
+      var data = json.decode(result.body);
+      Iterable jsonResponse = data['results'];
+      List<MoviesList> listMoviesModel =
+          jsonResponse.map((model) => MoviesList.fromJson(model)).toList();
+      return listMoviesModel;
+    }
+  }
 }

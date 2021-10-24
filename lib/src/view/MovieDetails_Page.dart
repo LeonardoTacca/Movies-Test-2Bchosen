@@ -109,7 +109,8 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(right: 5),
                                         child: Text(
-                                          'Ano de produção',
+                                          controller.releaseDate.value
+                                              .toString(),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -141,7 +142,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(right: 5),
                                         child: Text(
-                                          '4,1',
+                                          controller.year.value.toString(),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -153,7 +154,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          '59%',
+                                          controller.popularity.value,
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15),
