@@ -143,7 +143,15 @@ class HomePage extends GetView<HomeController> {
                             : GestureDetector(
                                 onTap: () => {
                                   Get.toNamed('/MovieDetails', arguments: [
-                                    controller.moviesList[index].id.toString()
+                                    controller.moviesList[index].id.toString(),
+                                    controller.moviesList[index].title
+                                        .toString(),
+                                    controller.moviesList[index].overview
+                                        .toString(),
+                                    controller.moviesList[index].posterPath
+                                        .toString(),
+                                    controller.moviesList[index].backdropPath
+                                        .toString(),
                                   ])
                                 },
                                 child: Container(

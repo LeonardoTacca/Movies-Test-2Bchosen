@@ -17,4 +17,8 @@ void main() {
     int movieId = 580489;
     await Api(httpInstance: http.Client()).getMovieDetails(movieId);
   });
+  test('Verificar se o retorno da api getSimilarMovies existe', () async {
+    int movieId = 580333;
+    await Api(httpInstance: http.Client()).getSimilarMovies(movieId);
+  });
 }

@@ -16,4 +16,8 @@ class Repository {
   getMovieDetail(movieId) {
     return apiClient.getMovieDetails(movieId);
   }
+
+  getSimilarMovies(movieId) {
+    return apiClient.getSimilarMovies(movieId);
+  }
 }

@@ -1,4 +1,4 @@
-class MovieDetails {
+class CategoryMovieDetails {
   late bool adult;
   late String backdropPath;
   late int budget;
@@ -19,7 +19,7 @@ class MovieDetails {
   late double voteAverage;
   late int voteCount;
 
-  MovieDetails(
+  CategoryMovieDetails(
       {required this.adult,
       required this.backdropPath,
       required this.budget,
@@ -40,7 +40,7 @@ class MovieDetails {
       required this.voteAverage,
       required this.voteCount});
 
-  MovieDetails.fromJson(Map<String, dynamic> json) {
+  CategoryMovieDetails.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     budget = json['budget'];

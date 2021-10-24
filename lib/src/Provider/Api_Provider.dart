@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:moviestest/src/model/Genres_Model.dart';
 import 'package:moviestest/src/model/Key_Model.dart';
-import 'package:moviestest/src/model/MovieDetails.dart';
+import 'package:moviestest/src/model/CategoryMovieDetails.dart';
 import 'package:moviestest/src/model/Movies_Model.dart';
+import 'package:moviestest/src/model/SimilarMoviesDetails.dart';
 
-import '../../src/model/MovieDetails.dart';
+import '../model/CategoryMovieDetails.dart';
 
 class Api extends GetConnect {
   late final http.Client httpInstance;
@@ -42,8 +43,22 @@ class Api extends GetConnect {
     http.Response result = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/$movieId?api_key=${MoviesKeys.apiKey}&language=pt-BR'));
     if (result.statusCode == 200) {
-      var data = MovieDetails.fromJson(json.decode(result.body));
+      var data = CategoryMovieDetails.fromJson(json.decode(result.body));
       return data;
+    }
+  }
+
+  getSimilarMovies(int movieId) async {
+    http.Response result = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$movieId/similar?api_key=${MoviesKeys.apiKey}&language=pt-BR&page=1'));
+    if (result.statusCode == 200) {
+      var data = json.decode(result.body);
+      Iterable jsonResponse = data['results'];
+
+      List<SimilarMoviesDetails> listSimilarMoviesModel = jsonResponse
+          .map((model) => SimilarMoviesDetails.fromJson(model))
+          .toList();
+      return listSimilarMoviesModel;
     }
   }
 }
