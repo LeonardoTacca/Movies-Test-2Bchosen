@@ -28,7 +28,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    'https://image.tmdb.org/t/p/w500/${controller.backdropPath.value}'),
+                                    'https://image.tmdb.org/t/p/w500/${controller.moviedetails[5]}'),
                                 fit: BoxFit.cover)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,7 +38,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                               padding: EdgeInsets.only(
                                   top: screenSize.height * 0.03),
                               child: IconButton(
-                                  onPressed: () => print('tocou'),
+                                  onPressed: () => Get.back(),
                                   icon: Icon(
                                     Icons.arrow_back,
                                     color: Colors.white,
@@ -79,7 +79,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                 color: Colors.white,
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w500/${controller.posterPath.value}'),
+                                        'https://image.tmdb.org/t/p/w500/${controller.moviedetails[6]}'),
                                     fit: BoxFit.cover)),
                           ),
                           Container(
@@ -92,7 +92,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 10, top: 5),
                                   child: Text(
-                                    controller.movieTitle.value,
+                                    controller.moviedetails[1],
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: screenSize.width * 0.07),
@@ -109,8 +109,9 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(right: 5),
                                         child: Text(
-                                          controller.releaseDate.value
-                                              .toString(),
+                                          controller.moviedetails[8]
+                                              .toString()
+                                              .substring(0, 4),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -128,7 +129,9 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 5),
                                         child: Text(
-                                          'Duração',
+                                          controller.moviedetails[7]
+                                                  .toString() +
+                                              ' minutos',
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -142,7 +145,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(right: 5),
                                         child: Text(
-                                          controller.year.value.toString(),
+                                          controller.moviedetails[4].toString(),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -154,7 +157,10 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          controller.popularity.value,
+                                          controller.moviedetails[3]
+                                                  .toString()
+                                                  .substring(0, 2) +
+                                              '%',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15),
@@ -235,7 +241,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
             Container(
               color: Colors.black,
               child: ExpandableText(
-                controller.overview.value,
+                controller.moviedetails[2],
                 expandText: 'Mais',
                 collapseText: 'Menos',
                 linkColor: Colors.red,
@@ -264,7 +270,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
             ),
             MovieListHorizontal().movieList(
                 screenSize,
-                'Filmes semelhantes a ${controller.movieTitle.value}',
+                'Filmes semelhantes a ${controller.moviedetails[1]}',
                 controller),
             Container(
               width: screenSize.width,

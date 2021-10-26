@@ -43,16 +43,24 @@ class MovieListHorizontal {
                                   padding: EdgeInsets.only(
                                       left: screenSize.width * 0.02,
                                       top: screenSize.height * 0.01),
-                                  child: Container(
-                                    height: screenSize.height * 0.05,
-                                    width: screenSize.width * 0.25,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Color.fromRGBO(27, 27, 27, 1),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                'https://image.tmdb.org/t/p/w500/${_.similiarMoviesList[index].backdropPath}'),
-                                            fit: BoxFit.cover)),
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      controller.updateMoviesdetails(
+                                          _.similiarMoviesList[index].id,
+                                          controller)
+                                    },
+                                    child: Container(
+                                      height: screenSize.height * 0.05,
+                                      width: screenSize.width * 0.25,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Color.fromRGBO(27, 27, 27, 1),
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'https://image.tmdb.org/t/p/w500/${_.similiarMoviesList[index].backdropPath}'),
+                                              fit: BoxFit.cover)),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -60,13 +68,10 @@ class MovieListHorizontal {
                                 alignment: AlignmentDirectional.center,
                                 width: screenSize.width * 0.27,
                                 height: screenSize.height * 0.07,
-                                child: Expanded(
-                                  child: Text(
-                                    _.similiarMoviesList[index].title
-                                        .toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                child: Text(
+                                  _.similiarMoviesList[index].title.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               )
                             ],

@@ -142,23 +142,8 @@ class HomePage extends GetView<HomeController> {
                               )
                             : GestureDetector(
                                 onTap: () => {
-                                  Get.toNamed('/MovieDetails', arguments: [
-                                    controller.moviesList[index].id.toString(),
-                                    controller.moviesList[index].title
-                                        .toString(),
-                                    controller.moviesList[index].overview
-                                        .toString(),
-                                    controller.moviesList[index].posterPath
-                                        .toString(),
-                                    controller.moviesList[index].backdropPath
-                                        .toString(),
-                                    controller.moviesList[index].voteAverage
-                                        .toString(),
-                                    controller.moviesList[index].popularity
-                                        .toString(),
-                                    controller.moviesList[index].releaseDate
-                                        .toString()
-                                  ])
+                                  controller.getmovieDetailsandNavigate(
+                                      controller.moviesList[index].id),
                                 },
                                 child: Container(
                                   width: 100,

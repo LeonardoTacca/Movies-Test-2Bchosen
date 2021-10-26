@@ -1,51 +1,39 @@
 import 'package:get/get.dart';
+import 'package:moviestest/src/Provider/Api_Provider.dart';
 import 'package:moviestest/src/Repository/Repository.dart';
-import 'package:moviestest/src/model/CategoryMovieDetails.dart';
 import 'package:moviestest/src/model/SimilarMoviesDetails.dart';
+import 'package:http/http.dart' as http;
 
 class MoviesDetailController extends GetxController {
   final Repository repository;
   MoviesDetailController({required this.repository})
       : assert(repository != null);
-  var arg = [].obs;
-  RxString year = ''.obs;
+
   RxInt movieId = 0.obs;
-
-  RxString movieTitle = ''.obs;
-  RxString overview = ''.obs;
-  RxString posterPath = ''.obs;
-  RxString backdropPath = ''.obs;
-  RxDouble voteAverage = 0.0.obs;
-  RxString popularity = ''.obs;
-  RxString releaseDate = ''.obs;
-  var _movieDetails;
-  set movieDetails(value) => this._movieDetails = value;
-  get movieDetails => this._movieDetails;
-
+  List moviedetails = [].obs;
   @override
   void onInit() async {
-    arg.value = Get.arguments;
-    movieTitle.value = arg[1];
-    overview.value = arg[2];
-    posterPath.value = arg[3];
-    backdropPath.value = arg[4];
-    voteAverage.value = double.parse(arg[5]);
-    year.value = voteAverage.value.toStringAsFixed(4);
-    popularity.value = arg[6];
-    releaseDate.value = arg[7];
     super.onInit();
   }
 
+  updateMoviesdetails(id, MoviesDetailController controller) async {
+    controller.getMovieDetails();
+
+    controller.moviedetails = [];
+    controller.movieId.value = id;
+
+    Get.toNamed('/MovieDetails');
+  }
+
   getMovieDetails() async {
-    movieId.value = int.parse(arg[0]);
-    movieDetails = await repository.getMovieDetail(movieId.value);
+    moviedetails = await repository.getMovieDetail(movieId.value);
   }
 
   var _similarMovies = <SimilarMoviesDetails>[].obs;
   set similiarMoviesList(value) => this._similarMovies.value = value;
   get similiarMoviesList => this._similarMovies.value;
+
   getSimilarMovies() {
-    movieId.value = int.parse(arg[0]);
     repository.getSimilarMovies(movieId.value).then((data) {
       this.similiarMoviesList = data;
     });
@@ -53,6 +41,7 @@ class MoviesDetailController extends GetxController {
 
   @override
   void onClose() {
+    Get.delete<MoviesDetailController>();
     super.onClose();
   }
 }

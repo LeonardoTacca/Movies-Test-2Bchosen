@@ -44,7 +44,18 @@ class Api extends GetConnect {
         'https://api.themoviedb.org/3/movie/$movieId?api_key=${MoviesKeys.apiKey}&language=pt-BR'));
     if (result.statusCode == 200) {
       var data = CategoryMovieDetails.fromJson(json.decode(result.body));
-      return data;
+      List results = [
+        data.id,
+        data.title,
+        data.overview,
+        data.popularity,
+        data.voteAverage,
+        data.backdropPath,
+        data.posterPath,
+        data.runtime,
+        data.releaseDate
+      ];
+      return results;
     }
   }
 

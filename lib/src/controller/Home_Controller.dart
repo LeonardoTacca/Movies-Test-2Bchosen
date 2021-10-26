@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moviestest/src/Provider/Api_Provider.dart';
 import 'package:moviestest/src/Repository/Repository.dart';
+import 'package:moviestest/src/controller/MoviesDetail_Controller.dart';
 import 'package:moviestest/src/model/Genres_Model.dart';
 import 'package:moviestest/src/model/Movies_Model.dart';
+import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
   final Repository repository;
@@ -37,14 +40,25 @@ class HomeController extends GetxController {
     moviesList = await repository.getMoviesByCategories(id, pageNumber);
   }
 
+  getmovieDetailsandNavigate(int id) async {
+    final MoviesDetailController detailsController = Get.put(
+        MoviesDetailController(
+            repository:
+                Repository(apiClient: Api(httpInstance: http.Client()))));
+    detailsController.movieId.value = id;
+    await detailsController.getMovieDetails();
+    Get.toNamed('/MovieDetails');
+  }
+
   TextEditingController searchField = TextEditingController();
   @override
   void onInit() {
     searchField.text = '';
     getPopularMovies();
-    if (categorySelected.value == true) {
-      scrollController
-        ..addListener(() async {
+
+    scrollController
+      ..addListener(() async {
+        if (categorySelected.value == true) {
           if (scrollController.offset >=
                   scrollController.position.maxScrollExtent &&
               !scrollController.position.outOfRange) {
@@ -53,7 +67,8 @@ class HomeController extends GetxController {
             scrollController.animateTo(5,
                 duration: Duration(milliseconds: 1000), curve: Curves.ease);
           }
-
+        }
+        if (categorySelected.value == true) {
           if (pageNumber.value >= 2 &&
               scrollController.offset <=
                   scrollController.position.minScrollExtent &&
@@ -65,8 +80,9 @@ class HomeController extends GetxController {
                 duration: Duration(milliseconds: 1000),
                 curve: Curves.ease);
           }
-        });
-    }
+        }
+      });
+
     super.onInit();
   }
 
