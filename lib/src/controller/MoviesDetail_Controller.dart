@@ -17,11 +17,10 @@ class MoviesDetailController extends GetxController {
   }
 
   updateMoviesdetails(id, MoviesDetailController controller) async {
-    controller.getMovieDetails();
-
-    controller.moviedetails = [];
+    controller.refresh();
     controller.movieId.value = id;
-
+    await controller.getMovieDetails();
+    Get.back();
     Get.toNamed('/MovieDetails');
   }
 
@@ -41,7 +40,6 @@ class MoviesDetailController extends GetxController {
 
   @override
   void onClose() {
-    Get.delete<MoviesDetailController>();
     super.onClose();
   }
 }
