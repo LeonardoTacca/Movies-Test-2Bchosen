@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:moviestest/src/Provider/Api_Provider.dart';
-import 'package:moviestest/src/Repository/Repository.dart';
-import 'package:moviestest/src/model/SimilarMoviesDetails.dart';
-import 'package:http/http.dart' as http;
+import 'package:moviestest/App/Data/model/SimilarMoviesDetails.dart';
+import 'package:moviestest/App/Repository/Repository.dart';
 
 class MoviesDetailController extends GetxController {
   final Repository repository;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moviestest/src/Provider/Api_Provider.dart';
-import 'package:moviestest/src/Repository/Repository.dart';
-import 'package:moviestest/src/controller/MoviesDetail_Controller.dart';
-import 'package:moviestest/src/model/Genres_Model.dart';
-import 'package:moviestest/src/model/Movies_Model.dart';
+import 'package:moviestest/App/Provider/Api_Provider.dart';
+import 'package:moviestest/App/Repository/Repository.dart';
+import 'package:moviestest/App/controller/MoviesDetail_Controller.dart';
+import 'package:moviestest/App/model/Genres_Model.dart';
+import 'package:moviestest/App/model/Movies_Model.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {

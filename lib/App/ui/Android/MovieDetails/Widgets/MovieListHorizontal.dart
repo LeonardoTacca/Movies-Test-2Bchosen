@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:moviestest/src/controller/MoviesDetail_Controller.dart';
+import 'package:moviestest/App/controller/MoviesDetail_Controller.dart';
 
 class MovieListHorizontal {
   movieList(screenSize, String tituloDescricao, controller) {

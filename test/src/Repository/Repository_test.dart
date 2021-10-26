@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:moviestest/src/Provider/Api_Provider.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:moviestest/src/Repository/Repository.dart';
+import 'package:moviestest/App/Data/Provider/Api_Provider.dart';
+import 'package:moviestest/App/Data/Repository/Repository.dart';
 
 void main() {
   final repository = Repository(apiClient: Api(httpInstance: http.Client()));
