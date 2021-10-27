@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:moviestest/App/Routes/Routes.dart';
 import 'package:moviestest/App/ui/Android/Home/Home_Page.dart';
 import 'package:moviestest/App/ui/Android/MovieDetails/MovieDetails_Page.dart';
-import 'package:moviestest/src/Routes/routes.dart';
 
 class Pages {
   static const initialRoute = Routes.HOME;

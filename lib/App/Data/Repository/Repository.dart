@@ -1,4 +1,6 @@
-import 'package:moviestest/src/Provider/Api_Provider.dart';
+
+
+import 'package:moviestest/App/Data/Provider/Api_Provider.dart';
 
 class Repository {
   final Api apiClient;

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:moviestest/App/Data/Repository/Repository.dart';
 import 'package:moviestest/App/Data/model/SimilarMoviesDetails.dart';
-import 'package:moviestest/App/Repository/Repository.dart';
+
 
 class MoviesDetailController extends GetxController {
   final Repository repository;

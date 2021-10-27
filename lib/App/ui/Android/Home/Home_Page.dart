@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:moviestest/src/controller/Home_Controller.dart';
+import 'package:moviestest/App/controller/Home_Controller.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -19,43 +19,18 @@ class HomePage extends GetView<HomeController> {
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Container(
-                    height: screenSize.height * 0.05,
-                    width: screenSize.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey[800],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () => null,
-                          icon: Icon(Icons.menu),
-                          color: Colors.grey[400],
+                      height: screenSize.height * 0.05,
+                      width: screenSize.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[800],
+                      ),
+                      child: Center(
+                        child: Text(
+                          'TMDB - Filmes',
+                          style: TextStyle(color: Colors.white),
                         ),
-                        Container(
-                          width: screenSize.width * 0.7,
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                                hintText: 'Procurar Filmes'),
-                            textAlign: TextAlign.left,
-                            onSaved: (String? value) {},
-                            validator: (String? value) {
-                              return (value != null && value.length == 0)
-                                  ? 'A palavra e muito Curta'
-                                  : null;
-                            },
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => null,
-                          icon: Icon(Icons.image),
-                          color: Colors.grey[800],
-                        ),
-                      ],
-                    ),
-                  ),
+                      )),
                 ),
               ),
               Container(
@@ -124,7 +99,7 @@ class HomePage extends GetView<HomeController> {
                 ),
               ),
               Container(
-                  height: screenSize.height * 0.8,
+                  height: screenSize.height * 0.85,
                   width: screenSize.width,
                   child: Obx(
                     () => Container(

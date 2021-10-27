@@ -1,8 +1,8 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moviestest/src/controller/MoviesDetail_Controller.dart';
-import 'package:moviestest/src/view/UI/Widgets/MovieListHorizontal.dart';
+import 'package:moviestest/App/controller/MoviesDetail_Controller.dart';
+import 'package:moviestest/App/ui/Android/MovieDetails/Widgets/MovieListHorizontal.dart';
 
 class MovieDetails extends GetView<MoviesDetailController> {
   const MovieDetails({Key? key}) : super(key: key);
@@ -12,6 +12,7 @@ class MovieDetails extends GetView<MoviesDetailController> {
     MediaQueryData screen = MediaQuery.of(context);
     Size screenSize = screen.size;
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -44,16 +45,6 @@ class MovieDetails extends GetView<MoviesDetailController> {
                                     color: Colors.white,
                                   )),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: screenSize.height * 0.03),
-                              child: IconButton(
-                                  onPressed: () => print('tocou'),
-                                  icon: Icon(
-                                    Icons.search,
-                                    color: Colors.white,
-                                  )),
-                            )
                           ],
                         )),
                   ),
@@ -272,61 +263,6 @@ class MovieDetails extends GetView<MoviesDetailController> {
                 screenSize,
                 'Filmes semelhantes a ${controller.moviedetails[1]}',
                 controller),
-            Container(
-              width: screenSize.width,
-              height: screenSize.height * 0.25,
-              color: Colors.black,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      'Mais Informações',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: screenSize.width * 0.04),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: screenSize.width * 0.4,
-                          height: screenSize.height * 0.2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Audio',
-                                  style: TextStyle(color: Colors.grey[400]))
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding:
-                              EdgeInsets.only(left: screenSize.width * 0.07),
-                          child: Container(
-                            width: screenSize.width * 0.4,
-                            height: screenSize.height * 0.2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Legenda',
-                                  style: TextStyle(color: Colors.grey[400]),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
           ],
         ),
       ),

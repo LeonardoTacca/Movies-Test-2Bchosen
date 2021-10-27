@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:moviestest/src/model/Genres_Model.dart';
-import 'package:moviestest/src/model/Key_Model.dart';
-import 'package:moviestest/src/model/CategoryMovieDetails.dart';
-import 'package:moviestest/src/model/Movies_Model.dart';
-import 'package:moviestest/src/model/SimilarMoviesDetails.dart';
+import 'package:moviestest/App/Data/model/CategoryMovieDetails.dart';
+import 'package:moviestest/App/Data/model/Genres_Model.dart';
+import 'package:moviestest/App/Data/model/Key_Model.dart';
+import 'package:moviestest/App/Data/model/Movies_Model.dart';
+import 'package:moviestest/App/Data/model/SimilarMoviesDetails.dart';
 
-import '../model/CategoryMovieDetails.dart';
+
+
 
 class Api extends GetConnect {
   late final http.Client httpInstance;
